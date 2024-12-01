@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.mb.braveryorhonesty.ui.PlayScreen
+import com.mb.braveryorhonesty.ui.play.PlayScreen
 import com.mb.braveryorhonesty.ui.StartScreen
 import com.mb.braveryorhonesty.ui.category.CategoryScreen
 
@@ -19,16 +19,17 @@ fun Navigation(navController: NavHostController) {
             )
         }
         composable("category") {
-            CategoryScreen(onCategorySelected = { categoryId ->
-                navController.navigate("play/$categoryId")
-            })
+            CategoryScreen(
+                onCategorySelected = { categoryId ->
+                    navController.navigate("play/$categoryId")
+                },
+                onNavigateBack = { navController.popBackStack() })
         }
         composable(
             route = "play/{categoryId}",
             arguments = listOf(navArgument("categoryId") { defaultValue = -1 })
-        ) { backStackEntry ->
-            val categoryId = backStackEntry.arguments?.getInt("categoryId") ?: -1
-            PlayScreen(categoryId = categoryId)
+        ) {
+            PlayScreen(onNavigateBack = { navController.popBackStack() })
         }
     }
 }
