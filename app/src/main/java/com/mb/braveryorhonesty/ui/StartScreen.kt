@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun StartScreen(
-    onNavigateToPlay: () -> Unit,
+    onNavigateToCategory: () -> Unit,
     onNavigateToSettings: () -> Unit,
 ) {
     Surface(
@@ -31,7 +31,7 @@ fun StartScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
             Button(
-                onClick = { onNavigateToPlay() },
+                onClick = { onNavigateToCategory() },
                 modifier = Modifier.fillMaxWidth(0.6f)
             ) {
                 Text(text = "Play", fontSize = 18.sp)
