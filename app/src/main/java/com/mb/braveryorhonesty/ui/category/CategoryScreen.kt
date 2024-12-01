@@ -22,8 +22,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.mb.braveryorhonesty.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +38,7 @@ fun CategoryScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Bravery or Honesty") },
+                title = { Text(text = stringResource(R.string.app_name)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateBack() }) {
                         Icon(
@@ -59,7 +61,7 @@ fun CategoryScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 Text(
-                    text = "CHOOSE CATEGORY",
+                    text = stringResource(R.string.choose_category).uppercase(),
                     modifier = Modifier.padding(16.dp)
                 )
                 LazyColumn(

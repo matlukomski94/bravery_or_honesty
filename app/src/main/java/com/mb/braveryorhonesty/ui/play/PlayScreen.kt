@@ -17,7 +17,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.mb.braveryorhonesty.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,7 +32,7 @@ fun PlayScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Bravery or Honesty") },
+                title = { Text(text = stringResource(R.string.app_name)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateBack() }) {
                         Icon(
@@ -48,7 +50,7 @@ fun PlayScreen(
                 .padding(paddingValues)
         ) {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Text(text = "Category: $categoryId")
+                Text(text = "${stringResource(R.string.category)} + $categoryId")
             }
         }
     }

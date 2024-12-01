@@ -8,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mb.braveryorhonesty.R
 
 @Composable
 fun StartScreen(
@@ -26,7 +28,7 @@ fun StartScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                text = "Bravery or Honesty",
+                text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.labelMedium
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -34,14 +36,14 @@ fun StartScreen(
                 onClick = { onNavigateToCategory() },
                 modifier = Modifier.fillMaxWidth(0.6f)
             ) {
-                Text(text = "Play", fontSize = 18.sp)
+                Text(text = stringResource(R.string.play), fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = { onNavigateToSettings() },
                 modifier = Modifier.fillMaxWidth(0.6f)
             ) {
-                Text(text = "Settings", fontSize = 18.sp)
+                Text(text = stringResource(R.string.settings), fontSize = 18.sp)
             }
         }
     }

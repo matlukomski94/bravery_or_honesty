@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Prawda czy Odwaga</string>
+    <string name="choose_category">Wybierz kategorię</string>
+    <string name="back">Wróć</string>
+    <string name="language">Język</string>
+    <string name="play">Graj</string>
+    <string name="settings">Ustawienia</string>
+    <string name="category">Kategoria</string>
+</resources>

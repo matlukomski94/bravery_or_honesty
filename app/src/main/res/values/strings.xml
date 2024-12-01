@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">BraveryOrHonesty</string>
+    <string name="app_name">Bravery or Honesty</string>
+    <string name="choose_category">Choose a category</string>
+    <string name="back">Back</string>
+    <string name="language">Language</string>
+    <string name="play">Play</string>
+    <string name="settings">Settings</string>
+    <string name="category">Category</string>
 </resources>
