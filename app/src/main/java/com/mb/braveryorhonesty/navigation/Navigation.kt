@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import com.mb.braveryorhonesty.ui.play.PlayScreen
 import com.mb.braveryorhonesty.ui.StartScreen
 import com.mb.braveryorhonesty.ui.category.CategoryScreen
+import com.mb.braveryorhonesty.ui.settings.SettingsScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -30,6 +31,9 @@ fun Navigation(navController: NavHostController) {
             arguments = listOf(navArgument("categoryId") { defaultValue = -1 })
         ) {
             PlayScreen(onNavigateBack = { navController.popBackStack() })
+        }
+        composable(route = "settings") {
+            SettingsScreen(onNavigateBack = { navController.popBackStack() })
         }
     }
 }

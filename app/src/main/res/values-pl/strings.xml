@@ -10,4 +10,18 @@
     <string name="bravery">Odwaga</string>
     <string name="honesty">Prawda</string>
     <string name="next">Następny</string>
+
+    <string name="game_options">Opcje gry</string>
+    <string name="theme">Motyw</string>
+    <string name="random_questions">Losowe pytania</string>
+    <string name="enabled">Włączone</string>
+    <string name="disabled">Wyłączone</string>
+    <string name="light">Jasny</string>
+    <string name="dark">Ciemny</string>
+    <string name="polish">Polski</string>
+    <string name="english">Angielski</string>
+
+    <string name="select_language">Wybierz język</string>
+    <string name="select_theme">Wybierz motyw</string>
+    <string name="cancel">Anuluj</string>
 </resources>
