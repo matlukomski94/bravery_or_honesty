@@ -7,4 +7,7 @@
     <string name="play">Graj</string>
     <string name="settings">Ustawienia</string>
     <string name="category">Kategoria</string>
+    <string name="bravery">Odwaga</string>
+    <string name="honesty">Prawda</string>
+    <string name="next">Następny</string>
 </resources>
