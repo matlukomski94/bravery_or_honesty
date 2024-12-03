@@ -1,3 +1,5 @@
+import com.mb.braveryorhonesty.BuildVersion
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -8,14 +10,14 @@ plugins {
 
 android {
     namespace = "com.mb.braveryorhonesty"
-    compileSdk = 35
+    compileSdk = BuildVersion.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.mb.braveryorhonesty"
-        minSdk = 30
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = BuildVersion.APPLICATION_ID
+        minSdk = BuildVersion.MIN_SDK
+        targetSdk = BuildVersion.TARGET_SDK
+        versionCode = BuildVersion.VERSION_CODE
+        versionName = BuildVersion.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -33,11 +35,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = BuildVersion.JVM_TARGET
     }
     buildFeatures {
         compose = true
@@ -63,13 +65,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
     //hilt
     implementation(libs.hilt.android)
@@ -79,4 +74,13 @@ dependencies {
     //datastore
     implementation(libs.datastore)
     implementation(libs.datastore.core)
+
+    //test stuff
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
