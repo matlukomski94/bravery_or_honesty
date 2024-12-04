@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import com.mb.braveryorhonesty.ui.play.PlayScreen
 import com.mb.braveryorhonesty.ui.StartScreen
 import com.mb.braveryorhonesty.ui.category.CategoryScreen
+import com.mb.braveryorhonesty.ui.players.PlayersListScreen
 import com.mb.braveryorhonesty.ui.settings.SettingsScreen
 
 @Composable
@@ -15,7 +16,7 @@ fun Navigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "start") {
         composable("start") {
             StartScreen(
-                onNavigateToCategory = { navController.navigate("category") },
+                onNavigateToPlayersList = { navController.navigate("players_list") },
                 onNavigateToSettings = { navController.navigate("settings") }
             )
         }
@@ -34,6 +35,12 @@ fun Navigation(navController: NavHostController) {
         }
         composable(route = "settings") {
             SettingsScreen(onNavigateBack = { navController.popBackStack() })
+        }
+        composable(route = "players_list") {
+            PlayersListScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onStartGame = { navController.navigate("category") }
+            )
         }
     }
 }

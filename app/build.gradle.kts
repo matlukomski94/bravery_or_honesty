@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.android.ksp)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -73,7 +74,8 @@ dependencies {
 
     //datastore
     implementation(libs.datastore)
-    implementation(libs.datastore.core)
+    implementation(libs.datastore.preferences)
+    implementation(libs.protobuf)
 
     //test stuff
     testImplementation(libs.junit)
@@ -83,4 +85,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.23.2"
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                create("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }
