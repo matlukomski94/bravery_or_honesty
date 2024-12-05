@@ -23,4 +23,13 @@
     <string name="select_language">Select Language</string>
     <string name="select_theme">Select Theme</string>
     <string name="cancel">Cancel</string>
+
+    <string name="add_players_title">Add Players</string>
+    <string name="player_name_hint">Player name</string>
+    <string name="add_player_button">Add</string>
+    <string name="players_list_title">Players List:</string>
+    <string name="no_players_message">No players in the list.</string>
+    <string name="delete_player_button">Delete player</string>
+    <string name="clear_all_players_button">Clear all players</string>
+    <string name="start_game_button">Start Game</string>
 </resources>

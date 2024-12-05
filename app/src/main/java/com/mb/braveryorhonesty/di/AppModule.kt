@@ -1,6 +1,7 @@
 package com.mb.braveryorhonesty.di
 
 import android.content.Context
+import com.mb.braveryorhonesty.data.PlayerDataStore
 import com.mb.braveryorhonesty.utils.SettingsDataStore
 import dagger.Module
 import dagger.Provides
@@ -19,5 +20,11 @@ object AppModule {
         @ApplicationContext context: Context,
     ): SettingsDataStore {
         return SettingsDataStore(context)
+    }
+
+    @Singleton
+    @Provides
+    fun providePlayerDataStore(@ApplicationContext context: Context): PlayerDataStore {
+        return PlayerDataStore(context)
     }
 }

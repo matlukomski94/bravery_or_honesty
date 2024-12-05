@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "com.mb.braveryorhonesty.data";
+option java_multiple_files = true;
+
+message Player {
+  string name = 1;
+}
+
+message PlayersList {
+  repeated Player players = 1;
+}

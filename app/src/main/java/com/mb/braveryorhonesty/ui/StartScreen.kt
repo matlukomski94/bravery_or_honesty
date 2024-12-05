@@ -15,7 +15,7 @@ import com.mb.braveryorhonesty.R
 
 @Composable
 fun StartScreen(
-    onNavigateToCategory: () -> Unit,
+    onNavigateToPlayersList: () -> Unit,
     onNavigateToSettings: () -> Unit,
 ) {
     Surface(
@@ -33,7 +33,7 @@ fun StartScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
             Button(
-                onClick = { onNavigateToCategory() },
+                onClick = { onNavigateToPlayersList() },
                 modifier = Modifier.fillMaxWidth(0.6f)
             ) {
                 Text(text = stringResource(R.string.play), fontSize = 18.sp)
