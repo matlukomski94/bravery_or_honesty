@@ -8,7 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-private val Context.dataStore by preferencesDataStore("settings")
+val Context.dataStore by preferencesDataStore("settings")
 
 class SettingsDataStore(private val context: Context) {
 
@@ -20,8 +20,8 @@ class SettingsDataStore(private val context: Context) {
 
     val settings: Flow<Settings> = context.dataStore.data.map { preferences ->
         Settings(
-            language = preferences[LANGUAGE]?.let { Language.valueOf(it) } ?: Language.POLISH,
-            theme = preferences[THEME]?.let { Theme.valueOf(it) } ?: Theme.LIGHT,
+            language = preferences[LANGUAGE]?.let { Language.valueOf(it) } ?: Language.ENGLISH,
+            theme = preferences[THEME]?.let { Theme.valueOf(it) } ?: Theme.DARK,
             randomQuestions = preferences[RANDOM_QUESTIONS] ?: true
         )
     }
@@ -50,8 +50,6 @@ data class Settings(
     val theme: Theme,
     val randomQuestions: Boolean
 )
-
-
 
 enum class Language(val displayName: String) {
     POLISH("Polski"),

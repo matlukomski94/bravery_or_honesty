@@ -12,7 +12,9 @@ import com.mb.braveryorhonesty.ui.players.PlayersListScreen
 import com.mb.braveryorhonesty.ui.settings.SettingsScreen
 
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(
+    navController: NavHostController
+) {
     NavHost(navController = navController, startDestination = "start") {
         composable("start") {
             StartScreen(
