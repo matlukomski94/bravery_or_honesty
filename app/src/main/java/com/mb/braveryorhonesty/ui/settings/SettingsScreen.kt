@@ -8,12 +8,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mb.braveryorhonesty.R
 import com.mb.braveryorhonesty.utils.Language
 import com.mb.braveryorhonesty.utils.Theme
+import com.mb.braveryorhonesty.utils.Utils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -21,6 +23,8 @@ fun SettingsScreen(
     onNavigateBack: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current
+
     val settings by viewModel.settings.collectAsState()
     var showLanguageModal by remember { mutableStateOf(false) }
     var showThemeModal by remember { mutableStateOf(false) }
@@ -31,7 +35,7 @@ fun SettingsScreen(
                 IconButton(onClick = { onNavigateBack() }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back"
+                        contentDescription = stringResource(R.string.back)
                     )
                 }
             })
@@ -69,6 +73,7 @@ fun SettingsScreen(
             onSelect = { selected ->
                 Language.fromDisplayName(selected)?.let {
                     viewModel.updateLanguage(it)
+                    Utils.setLanguage(context, it)
                 }
                 showLanguageModal = false
             })

@@ -19,6 +19,7 @@ android {
         targetSdk = BuildVersion.TARGET_SDK
         versionCode = BuildVersion.VERSION_CODE
         versionName = BuildVersion.VERSION_NAME
+        resourceConfigurations += listOf ("en", "pl")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -70,6 +71,7 @@ dependencies {
     //hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation)
+    implementation(libs.androidx.appcompat)
     ksp(libs.hilt.compiler)
 
     //datastore
