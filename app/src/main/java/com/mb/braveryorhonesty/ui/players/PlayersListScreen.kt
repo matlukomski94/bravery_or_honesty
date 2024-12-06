@@ -106,7 +106,7 @@ fun PlayersListScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(players) { player ->
-                        PlayerCard(playerName = player, onDelete = { viewModel.removePlayer(player) })
+                        PlayerCard(playerName = player.name, onDelete = { viewModel.removePlayer(player.name) })
                     }
                 }
 

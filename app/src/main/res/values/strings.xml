@@ -32,4 +32,5 @@
     <string name="delete_player_button">Delete player</string>
     <string name="clear_all_players_button">Clear all players</string>
     <string name="start_game_button">Start Game</string>
+    <string name="no_player">No player</string>
 </resources>

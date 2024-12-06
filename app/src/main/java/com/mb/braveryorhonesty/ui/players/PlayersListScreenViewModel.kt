@@ -2,6 +2,7 @@ package com.mb.braveryorhonesty.ui.players
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mb.braveryorhonesty.data.Player
 import com.mb.braveryorhonesty.data.PlayerDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,7 +16,7 @@ class PlayersListScreenViewModel @Inject constructor(
     private val playerDataStore: PlayerDataStore
 ) : ViewModel() {
 
-    val players: StateFlow<List<String>> = playerDataStore.players
+    val players: StateFlow<List<Player>> = playerDataStore.players
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     fun addPlayer(name: String) {

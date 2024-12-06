@@ -5,7 +5,9 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -28,8 +30,10 @@ private val Context.playerDataStore: DataStore<PlayersList> by dataStore(
 
 class PlayerDataStore(private val context: Context) {
 
-    val players: Flow<List<String>> = context.playerDataStore.data.map { playerList ->
-        playerList.playersList.map { it.name }
+    private var currentIndex = -1
+
+    val players: Flow<List<Player>> = context.playerDataStore.data.map { playerList ->
+        playerList.playersList
     }
 
     suspend fun addPlayer(name: String) {
@@ -55,5 +59,17 @@ class PlayerDataStore(private val context: Context) {
         context.playerDataStore.updateData {
             it.toBuilder().clearPlayers().build()
         }
+        resetIndex()
+    }
+
+    fun getNextPlayer(): Player? {
+        val currentPlayers = runBlocking { players.first() }
+        if (currentPlayers.isEmpty()) return null
+        currentIndex = (currentIndex + 1) % currentPlayers.size
+        return currentPlayers[currentIndex]
+    }
+
+    private fun resetIndex() {
+        currentIndex = -1
     }
 }
