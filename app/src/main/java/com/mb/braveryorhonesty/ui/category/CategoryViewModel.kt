@@ -1,6 +1,6 @@
 package com.mb.braveryorhonesty.ui.category
 
-import com.mb.braveryorhonesty.base.BaseViewModel
+import com.mb.core.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

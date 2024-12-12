@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mb.braveryorhonesty"
+    namespace = "com.mb.core"
     compileSdk = BuildVersion.COMPILE_SDK
 
     defaultConfig {

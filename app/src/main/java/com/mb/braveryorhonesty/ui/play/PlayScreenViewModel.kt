@@ -1,7 +1,7 @@
 package com.mb.braveryorhonesty.ui.play
 
 import androidx.lifecycle.SavedStateHandle
-import com.mb.braveryorhonesty.base.BaseViewModel
+import com.mb.core.base.BaseViewModel
 import com.mb.braveryorhonesty.utils.OptionType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

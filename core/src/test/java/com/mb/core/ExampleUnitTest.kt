@@ -1,4 +1,4 @@
-package com.mb.braveryorhonesty
+package com.mb.core
 
 import org.junit.Test
 

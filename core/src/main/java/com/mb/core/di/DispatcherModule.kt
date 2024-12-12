@@ -1,4 +1,4 @@
-package com.mb.braveryorhonesty.di
+package com.mb.core.di
 
 import dagger.Module
 import dagger.Provides

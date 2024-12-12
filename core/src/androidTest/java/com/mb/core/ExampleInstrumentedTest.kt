@@ -1,4 +1,4 @@
-package com.mb.braveryorhonesty
+package com.mb.core
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

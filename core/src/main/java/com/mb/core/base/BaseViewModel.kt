@@ -1,4 +1,4 @@
-package com.mb.braveryorhonesty.base
+package com.mb.core.base
 
 import androidx.lifecycle.ViewModel
 
