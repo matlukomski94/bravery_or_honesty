@@ -57,8 +57,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
 
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -71,7 +71,6 @@ dependencies {
     //hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation)
-    implementation(libs.androidx.appcompat)
     ksp(libs.hilt.compiler)
 
     //datastore

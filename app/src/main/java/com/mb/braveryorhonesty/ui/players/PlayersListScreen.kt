@@ -28,7 +28,7 @@ import com.mb.braveryorhonesty.R
 fun PlayersListScreen(
     onNavigateBack: () -> Unit,
     onStartGame: () -> Unit,
-    viewModel: PlayersListScreenViewModel = hiltViewModel()
+    viewModel: PlayersListViewModel = hiltViewModel()
 ) {
     val players by viewModel.players.collectAsState()
     var newPlayerName by remember { mutableStateOf("") }

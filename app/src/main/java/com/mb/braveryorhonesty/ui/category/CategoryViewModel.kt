@@ -1,10 +1,10 @@
 package com.mb.braveryorhonesty.ui.category
 
-import androidx.lifecycle.ViewModel
+import com.mb.braveryorhonesty.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class CategoryViewModel : ViewModel() {
+class CategoryViewModel : BaseViewModel() {
     private val _categories = MutableStateFlow(
         listOf(
             "All" to -1,

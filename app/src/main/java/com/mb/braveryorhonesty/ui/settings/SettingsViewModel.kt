@@ -1,11 +1,11 @@
 package com.mb.braveryorhonesty.ui.settings
 
+import androidx.lifecycle.viewModelScope
+import com.mb.braveryorhonesty.base.BaseViewModel
+import com.mb.braveryorhonesty.utils.Language
 import com.mb.braveryorhonesty.utils.Settings
 import com.mb.braveryorhonesty.utils.SettingsDataStore
 import com.mb.braveryorhonesty.utils.Theme
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.mb.braveryorhonesty.utils.Language
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val dataStore: SettingsDataStore,
-) : ViewModel() {
+) : BaseViewModel() {
 
     val settings: StateFlow<Settings> = dataStore.settings
         .stateIn(
