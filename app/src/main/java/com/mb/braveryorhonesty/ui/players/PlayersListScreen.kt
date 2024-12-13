@@ -1,25 +1,24 @@
 package com.mb.braveryorhonesty.ui.players
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mb.braveryorhonesty.R
 
@@ -28,21 +27,21 @@ import com.mb.braveryorhonesty.R
 fun PlayersListScreen(
     onNavigateBack: () -> Unit,
     onStartGame: () -> Unit,
-    viewModel: PlayersListViewModel = hiltViewModel<PlayersListViewModel>()
+    viewModel: PlayersListViewModel = hiltViewModel<PlayersListViewModel>(),
 ) {
     val players by viewModel.players.collectAsState()
-    var newPlayerName by remember { mutableStateOf("") }
-    val focusManager = LocalFocusManager.current
+    var showAddPlayerDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(id = R.string.add_players_title)) },
+                title = { Text("") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(id = R.string.back))
+                            contentDescription = stringResource(id = R.string.back)
+                        )
                     }
                 }
             )
@@ -53,115 +52,159 @@ fun PlayersListScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(16.dp)
-                .clickable(
-                    indication = null,
-                    interactionSource = remember { MutableInteractionSource() }
-                ) {
-                    focusManager.clearFocus()
-                }
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.fillMaxSize()
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    TextField(
-                        value = newPlayerName,
-                        onValueChange = { newPlayerName = it },
-                        label = { Text(stringResource(id = R.string.player_name_hint)) },
-                        modifier = Modifier.weight(1f),
-                        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-                        keyboardActions = KeyboardActions(onDone = {
-                            if (newPlayerName.isNotBlank()) {
-                                viewModel.addPlayer(newPlayerName.trim())
-                                newPlayerName = ""
-                                focusManager.clearFocus()
-                            }
-                        })
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    IconButton(
-                        onClick = {
-                            if (newPlayerName.isNotBlank()) {
-                                viewModel.addPlayer(newPlayerName.trim())
-                                newPlayerName = ""
-                                focusManager.clearFocus()
-                            }
-                        },
-                        colors = IconButtonDefaults.iconButtonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = stringResource(id = R.string.add_player_button),
-                            tint = Color.Green
-                        )
-                    }
-                }
-
-                Text(text = stringResource(id = R.string.players_list_title), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    text = stringResource(id = R.string.players_list_title),
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .padding(bottom = 16.dp)
+                        .fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
 
                 LazyColumn(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(players) { player ->
-                        PlayerCard(playerName = player.name, onDelete = { viewModel.removePlayer(player.name) })
+                        PlayerCard(
+                            playerName = player.name,
+                            onDelete = { viewModel.removePlayer(player.name) }
+                        )
+                    }
+
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.AddCircle,
+                                contentDescription = stringResource(id = R.string.add_player_button),
+                                tint = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier
+                                    .size(60.dp)
+                                    .clickable { showAddPlayerDialog = true }
+                            )
+                        }
                     }
                 }
 
-                if (players.isNotEmpty()) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(
-                        onClick = { viewModel.clearPlayers() },
-                        modifier = Modifier.fillMaxWidth(0.7f),
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                    ) {
-                        Text(stringResource(id = R.string.clear_all_players_button))
-                    }
-                }
+                Spacer(modifier = Modifier.height(16.dp))
 
-                Spacer(modifier = Modifier.weight(1f))
-
+                // Przycisk "Rozpocznij grę"
                 Button(
-                    onClick = { onStartGame() },
-                    modifier = Modifier.fillMaxWidth(0.7f),
-                    enabled = players.isNotEmpty()
+                    onClick = onStartGame,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp),
+                    enabled = players.isNotEmpty(),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary)
                 ) {
-                    Text(stringResource(id = R.string.start_game_button))
+                    Text(
+                        text = stringResource(id = R.string.start_game_button),
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onTertiary,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
+            }
+
+            if (showAddPlayerDialog) {
+                AddPlayerDialog(
+                    onDismiss = { showAddPlayerDialog = false },
+                    onAddPlayer = { name ->
+                        viewModel.addPlayer(name)
+                        showAddPlayerDialog = false
+                    }
+                )
             }
         }
     }
 }
 
+
+@Composable
+fun AddPlayerDialog(
+    onDismiss: () -> Unit,
+    onAddPlayer: (String) -> Unit,
+) {
+    var playerName by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = stringResource(id = R.string.add_player_title)) },
+        text = {
+            TextField(
+                value = playerName,
+                onValueChange = { playerName = it },
+                label = { Text(stringResource(id = R.string.player_name_hint)) },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(onDone = {
+                    if (playerName.isNotBlank()) {
+                        onAddPlayer(playerName.trim())
+                    }
+                })
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    if (playerName.isNotBlank()) {
+                        onAddPlayer(playerName.trim())
+                    }
+                }
+            ) {
+                Text(text = stringResource(id = R.string.add))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+        }
+    )
+}
+
 @Composable
 fun PlayerCard(
     playerName: String,
-    onDelete: () -> Unit
+    onDelete: () -> Unit,
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(50.dp),
+            .height(70.dp),
         tonalElevation = 4.dp,
         shape = MaterialTheme.shapes.medium
     ) {
         Row(
-            modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = playerName,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.weight(1f)
             )
             IconButton(onClick = onDelete) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = stringResource(id = R.string.delete_player_button),
-                    tint = Color.Red
+                    tint = MaterialTheme.colorScheme.error
                 )
             }
         }

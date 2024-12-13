@@ -28,10 +28,12 @@
     <string name="add_players_title">Dodaj graczy</string>
     <string name="player_name_hint">Imię gracza</string>
     <string name="add_player_button">Dodaj</string>
-    <string name="players_list_title">Lista graczy:</string>
+    <string name="players_list_title">GRACZE</string>
     <string name="no_players_message">Brak graczy na liście.</string>
     <string name="delete_player_button">Usuń gracza</string>
     <string name="clear_all_players_button">Usuń wszystkich graczy</string>
     <string name="start_game_button">Rozpocznij grę</string>
     <string name="no_player">Brak gracza</string>
+    <string name="add_player_title">Dodaj gracza</string>
+    <string name="add">Dodaj</string>
 </resources>

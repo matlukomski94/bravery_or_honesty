@@ -27,10 +27,12 @@
     <string name="add_players_title">Add Players</string>
     <string name="player_name_hint">Player name</string>
     <string name="add_player_button">Add</string>
-    <string name="players_list_title">Players List:</string>
+    <string name="players_list_title">PLAYERS</string>
     <string name="no_players_message">No players in the list.</string>
     <string name="delete_player_button">Delete player</string>
     <string name="clear_all_players_button">Clear all players</string>
     <string name="start_game_button">Start Game</string>
     <string name="no_player">No player</string>
+    <string name="add_player_title">Add player</string>
+    <string name="add">Add</string>
 </resources>
