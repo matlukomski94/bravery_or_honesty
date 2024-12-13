@@ -1,7 +1,7 @@
 package com.mb.braveryorhonesty.ui.play
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import com.mb.core.base.BaseViewModel
 import com.mb.braveryorhonesty.utils.OptionType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PlayScreenViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _categoryId = MutableStateFlow(-1)
     val categoryId: StateFlow<Int> = _categoryId
@@ -33,7 +33,7 @@ class PlayScreenViewModel @Inject constructor(
     val currentQuestion: StateFlow<String> = _currentQuestion
 
     init {
-        val categoryIdFromArgs = savedStateHandle.get<Int>("categoryId") ?: -1
+        val categoryIdFromArgs = savedStateHandle["categoryId"] ?: -1
         _categoryId.value = categoryIdFromArgs
     }
 
