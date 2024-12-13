@@ -19,20 +19,25 @@ fun PlayScreen(
     onNavigateBack: () -> Unit,
     viewModel: PlayScreenViewModel = hiltViewModel(),
 ) {
-    val categoryId by viewModel.categoryId.collectAsState()
+    val currentPlayer by viewModel.currentPlayer.collectAsState()
+    val selectedOption by viewModel.selectedOption.collectAsState()
     val currentQuestion by viewModel.currentQuestion.collectAsState()
-
-    var selectedOption by remember { mutableStateOf<OptionType?>(null) }
+    val categoryId by viewModel.categoryId.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.app_name)) },
+                title = {
+                    Text(
+                        text = stringResource(R.string.app_name),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                },
                 navigationIcon = {
-                    IconButton(onClick = { onNavigateBack() }) {
+                    IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
@@ -44,12 +49,26 @@ fun PlayScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = currentPlayer?.name ?: stringResource(R.string.no_player),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier
+                        .padding(vertical = 16.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
                 if (selectedOption == null) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxHeight()
                     ) {
                         Text(
                             text = "${stringResource(R.string.category)} $categoryId",
@@ -58,20 +77,14 @@ fun PlayScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
-                            onClick = {
-                                selectedOption = OptionType.BRAVERY
-                                viewModel.getRandomQuestion(OptionType.BRAVERY)
-                            },
+                            onClick = { viewModel.selectOption(OptionType.BRAVERY) },
                             modifier = Modifier.fillMaxWidth(0.6f)
                         ) {
                             Text(text = OptionType.BRAVERY.displayName)
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
-                            onClick = {
-                                selectedOption = OptionType.HONESTY
-                                viewModel.getRandomQuestion(OptionType.HONESTY)
-                            },
+                            onClick = { viewModel.selectOption(OptionType.HONESTY) },
                             modifier = Modifier.fillMaxWidth(0.6f)
                         ) {
                             Text(text = OptionType.HONESTY.displayName)
@@ -80,7 +93,8 @@ fun PlayScreen(
                 } else {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxHeight()
                     ) {
                         Text(
                             text = "${selectedOption?.displayName}: $currentQuestion",
@@ -89,7 +103,7 @@ fun PlayScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
-                            onClick = { selectedOption = null },
+                            onClick = { viewModel.getNextPlayer() },
                             modifier = Modifier.fillMaxWidth(0.6f)
                         ) {
                             Text(text = stringResource(R.string.next))

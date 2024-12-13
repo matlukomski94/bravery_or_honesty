@@ -33,4 +33,5 @@
     <string name="delete_player_button">Usuń gracza</string>
     <string name="clear_all_players_button">Usuń wszystkich graczy</string>
     <string name="start_game_button">Rozpocznij grę</string>
+    <string name="no_player">Brak gracza</string>
 </resources>

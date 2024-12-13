@@ -2,6 +2,7 @@ package com.mb.braveryorhonesty.ui.players
 
 import androidx.lifecycle.viewModelScope
 import com.mb.core.base.BaseViewModel
+import com.mb.braveryorhonesty.data.Player
 import com.mb.braveryorhonesty.data.PlayerDataStore
 import com.mb.core.di.IoDispatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,7 @@ class PlayersListViewModel @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : BaseViewModel() {
 
-    val players: StateFlow<List<String>> = playerDataStore.players
+    val players: StateFlow<List<Player>> = playerDataStore.players
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     fun addPlayer(name: String) {
