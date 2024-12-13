@@ -19,10 +19,7 @@ fun PlayScreen(
     onNavigateBack: () -> Unit,
     viewModel: PlayScreenViewModel = hiltViewModel(),
 ) {
-    val currentPlayer by viewModel.currentPlayer.collectAsState()
-    val selectedOption by viewModel.selectedOption.collectAsState()
-    val currentQuestion by viewModel.currentQuestion.collectAsState()
-    val categoryId by viewModel.categoryId.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
@@ -56,7 +53,7 @@ fun PlayScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = currentPlayer?.name ?: stringResource(R.string.no_player),
+                    text = uiState.currentPlayer?.name ?: stringResource(R.string.no_player),
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier
                         .padding(vertical = 16.dp)
@@ -64,14 +61,14 @@ fun PlayScreen(
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
-                if (selectedOption == null) {
+                if (uiState.selectedOption == null) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxHeight()
                     ) {
                         Text(
-                            text = "${stringResource(R.string.category)} $categoryId",
+                            text = "${stringResource(R.string.category)} ${uiState.categoryId}",
                             style = MaterialTheme.typography.titleLarge,
                             modifier = Modifier.padding(16.dp)
                         )
@@ -97,7 +94,7 @@ fun PlayScreen(
                         modifier = Modifier.fillMaxHeight()
                     ) {
                         Text(
-                            text = "${selectedOption?.displayName}: $currentQuestion",
+                            text = "${uiState.selectedOption?.displayName}: ${uiState.currentQuestion}",
                             style = MaterialTheme.typography.titleLarge,
                             modifier = Modifier.padding(16.dp)
                         )
