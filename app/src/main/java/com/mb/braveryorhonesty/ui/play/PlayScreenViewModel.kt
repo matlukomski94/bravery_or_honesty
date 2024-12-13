@@ -4,18 +4,22 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.mb.braveryorhonesty.data.Player
 import com.mb.braveryorhonesty.data.PlayerDataStore
-import com.mb.core.base.BaseViewModel
 import com.mb.braveryorhonesty.utils.OptionType
+import com.mb.core.base.BaseViewModel
+import com.mb.core.di.IoDispatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PlayScreenViewModel @Inject constructor(
     private val playerDataStore: PlayerDataStore,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
@@ -40,7 +44,7 @@ class PlayScreenViewModel @Inject constructor(
         getNextPlayer()
     }
 
-    fun getNextPlayer() {
+    fun getNextPlayer() = viewModelScope.launch(ioDispatcher) {
         _currentPlayer.value = playerDataStore.getNextPlayer()
         _selectedOption.value = null
         _currentQuestion.value = null
@@ -70,5 +74,4 @@ class PlayScreenViewModel @Inject constructor(
         "Czy kiedykolwiek złamałeś zasady?",
         "Co lubisz najbardziej w tej kategorii?"
     )
-
 }

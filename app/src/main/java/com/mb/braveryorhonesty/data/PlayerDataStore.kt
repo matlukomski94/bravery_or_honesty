@@ -7,7 +7,6 @@ import androidx.datastore.dataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -62,9 +61,10 @@ class PlayerDataStore(private val context: Context) {
         resetIndex()
     }
 
-    fun getNextPlayer(): Player? {
-        val currentPlayers = runBlocking { players.first() }
+    suspend fun getNextPlayer(): Player? {
+        val currentPlayers = players.first()
         if (currentPlayers.isEmpty()) return null
+
         currentIndex = (currentIndex + 1) % currentPlayers.size
         return currentPlayers[currentIndex]
     }
