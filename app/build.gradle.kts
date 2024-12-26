@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.kotlin.android.ksp)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.protobuf)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -19,7 +21,7 @@ android {
         targetSdk = BuildVersion.TARGET_SDK
         versionCode = BuildVersion.VERSION_CODE
         versionName = BuildVersion.VERSION_NAME
-        resourceConfigurations += listOf ("en", "pl")
+        resourceConfigurations += listOf("en", "pl")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -77,6 +79,10 @@ dependencies {
     implementation(libs.datastore)
     implementation(libs.datastore.preferences)
     implementation(libs.protobuf)
+
+    //firebase
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 
     //test stuff
     testImplementation(libs.junit)
