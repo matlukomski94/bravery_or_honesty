@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Prawda czy Odwaga</string>
+    <string name="app_name">Szczerość czy odwaga</string>
     <string name="choose_category">Wybierz kategorię</string>
     <string name="back">Wróć</string>
     <string name="language">Język</string>
