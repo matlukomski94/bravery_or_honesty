@@ -1,9 +1,11 @@
-package com.mb.braveryorhonesty.data
+package com.mb.braveryorhonesty.data.player
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
+import com.mb.braveryorhonesty.data.Player
+import com.mb.braveryorhonesty.data.PlayersList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map

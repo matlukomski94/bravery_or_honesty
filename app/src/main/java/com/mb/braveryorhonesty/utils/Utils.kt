@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 
 object Utils {
+
+    const val LOG_TAG = "brave_or_honesty"
+
     private fun Context.findActivity(): Activity? = when (this) {
         is Activity -> this
         is ContextWrapper -> baseContext.findActivity()

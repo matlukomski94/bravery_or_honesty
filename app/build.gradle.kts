@@ -75,6 +75,11 @@ dependencies {
     implementation(libs.hilt.navigation)
     ksp(libs.hilt.compiler)
 
+    //room
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+
     //datastore
     implementation(libs.datastore)
     implementation(libs.datastore.preferences)
@@ -83,6 +88,8 @@ dependencies {
     //firebase
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.firestore.ktx)
 
     //test stuff
     testImplementation(libs.junit)
