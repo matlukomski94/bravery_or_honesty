@@ -2,7 +2,7 @@ package com.mb.braveryorhonesty.ui.play
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.mb.braveryorhonesty.data.PlayerDataStore
+import com.mb.braveryorhonesty.data.player.PlayerDataStore
 import com.mb.braveryorhonesty.utils.OptionType
 import com.mb.core.base.BaseViewModel
 import com.mb.core.di.IoDispatcher

@@ -3,7 +3,7 @@ package com.mb.braveryorhonesty.ui.players
 import androidx.lifecycle.viewModelScope
 import com.mb.core.base.BaseViewModel
 import com.mb.braveryorhonesty.data.Player
-import com.mb.braveryorhonesty.data.PlayerDataStore
+import com.mb.braveryorhonesty.data.player.PlayerDataStore
 import com.mb.core.di.IoDispatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
